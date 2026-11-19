@@ -87,7 +87,6 @@ The Project item contains the following attributes:
 \- \`Price\`: 0 (Number)\
 \- \`ProjectCategory\`: Storage (String)\
 \- \`Published\`: True (Boolean)\
-\- \`StudentsComplete\`: Nikko (String)\
 \- \`Title\`: Host a Website on Amazon S3 (String)\
 \- \`URL\`: aws-host-a-website-on-s3 (String)
 
