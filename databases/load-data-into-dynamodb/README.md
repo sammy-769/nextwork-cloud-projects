@@ -36,13 +36,13 @@ This project took me approximately one hour to complete.
 
 ## Create a DynamoDB table
 
-Data in a DynamoDB table is organised into \*\*items and attributes\*\*. Each item represents a single record, while its attributes store the individual pieces of information about that record. Every item must have a primary key, which uniquely identifies it within the table. A primary key can consist of a partition key alone or a combination of a partition key and a sort key.
+Data in a DynamoDB table is organised into **items and attributes**. Each item represents a single record, while its attributes store the individual pieces of information about that record. Every item must have a primary key, which uniquely identifies it within the table. A primary key can consist of a partition key alone or a combination of a partition key and a sort key.
 
 ### ✍️ What are we doing in this step?
 
 In this step, I used AWS CloudShell to interact with Amazon DynamoDB through the command line. I ran AWS CLI commands to create and manage DynamoDB tables directly from the AWS Management Console.
 
-An attribute is a piece of data stored in a DynamoDB item. Each attribute has a name and a value. For example, a user record might contain attributes such as \`user\_id\`, \`username\`, \`email\` and \`age\`. These attributes describe the item and store its information.
+An attribute is a piece of data stored in a DynamoDB item. Each attribute has a name and a value. For example, a user record might contain attributes such as `user_id`, `username`, `email` and `age`. These attributes describe the item and store its information.
 
 ![Create a DynamoDB table](https://nextwork.ai/sammy769/uploads/8bd82466-f5ee-569e-9125-2c4c6ce7a07f_a3cefee0)
 
@@ -60,7 +60,7 @@ AWS CloudShell is a browser-based shell provided by AWS that allows me to run co
 
 The AWS Command Line Interface (AWS CLI) is a tool that allows me to interact with and manage AWS services by running commands in a terminal or command-line environment. Instead of using the AWS Management Console, I can use commands to create, configure and manage resources such as DynamoDB tables, S3 buckets and EC2 instances.
 
-I used the \`aws dynamodb create-table\` command to create four DynamoDB tables: \`ContentCatalog\`, \`Forum\`, \`Post\` and \`Comment\`. The \`--table-name\` option specified each table's name, while \`--attribute-definitions\` defined the key attributes and their data types `S` for String and `N` for Number). The `--key-schema` option specified each table's primary key structure: `HASH` represents the partition key, and `RANGE` represents the sort key. I also used `--provisioned-throughput` to configure one read capacity unit and one write capacity unit for each table. Finally, `--query "TableDescription.TableStatus"` filtered the command's output to display the table's status.
+I used the `aws dynamodb create-table` command to create four DynamoDB tables: `ContentCatalog`, `Forum`, `Post` and `Comment`. The `--table-name` option specified each table's name, while `--attribute-definitions` defined the key attributes and their data types (`S` for String and `N` for Number). The `--key-schema` option specified each table's primary key structure: `HASH` represents the partition key, and `RANGE` represents the sort key. I also used `--provisioned-throughput` to configure one read capacity unit and one write capacity unit for each table. Finally, `--query "TableDescription.TableStatus"` filtered the command's output to display the table's status.
 
 ### ✍️ What are we doing in this step?
 
@@ -70,7 +70,7 @@ In this step, I loaded data into my DynamoDB tables using AWS CloudShell. I then
 
 ## Loading Data with CLI
 
-I used \`curl -O\` to download a ZIP file containing the sample data for this project. I then used `unzip` to extract the files and `cd` to enter the extracted directory. After that, I ran `aws dynamodb batch-write-item` with the corresponding JSON file for each table. These commands sent batch write requests to DynamoDB to insert the sample items into the \`ContentCatalog\`, \`Forum\`, \`Post\` and \`Comment\` tables.
+I used `curl -O` to download a ZIP file containing the sample data for this project. I then used `unzip` to extract the files and `cd` to enter the extracted directory. After that, I ran `aws dynamodb batch-write-item` with the corresponding JSON file for each table. These commands sent batch write requests to DynamoDB to insert the sample items into the `ContentCatalog`, `Forum`, `Post` and `Comment` tables.
 
 ![Loading Data with CLI](https://nextwork.ai/sammy769/uploads/8bd82466-f5ee-569e-9125-2c4c6ce7a07f_791c600b)
 
@@ -80,19 +80,19 @@ I used \`curl -O\` to download a ZIP file containing the sample data for this pr
 
 The Project item contains the following attributes:
 
-\- \`Id\`: 1 (Number, partition key)\
-\- \`Authors\`: A list of authors\
-\- \`ContentType\`: Project (String)\
-\- \`Difficulty\`: Easy peasy (String)\
-\- \`Price\`: 0 (Number)\
-\- \`ProjectCategory\`: Storage (String)\
-\- \`Published\`: True (Boolean)\
-\- \`Title\`: Host a Website on Amazon S3 (String)\
-\- \`URL\`: aws-host-a-website-on-s3 (String)
+- `Id`: 1 (Number, partition key)
+- `Authors`: A list of authors
+- `ContentType`: Project (String)
+- `Difficulty`: Easy peasy (String)
+- `Price`: 0 (Number)
+- `ProjectCategory`: Storage (String)
+- `Published`: True (Boolean)
+- `Title`: Host a Website on Amazon S3 (String)
+- `URL`: aws-host-a-website-on-s3 (String)
 
 These attributes describe the project, its category, difficulty, publication status and other details.
 
-The Video item contains six attributes: \`ContentType\` (Video), \`Price\` (Number), \`Services\` (List), \`Title\` (String), \`URL\` (String) and \`VideoType\` (String). Unlike the Project item, it does not contain attributes such as \`Difficulty\`, \`ProjectCategory\`, \`Published\` or \`StudentsComplete\`. This shows that DynamoDB items in the same table can have different attributes.
+The Video item contains six attributes: `ContentType` (Video), `Price` (Number), `Services` (List), `Title` (String), `URL` (String) and `VideoType` (String). Unlike the Project item, it does not contain attributes such as `Difficulty`, `ProjectCategory`, `Published` or `StudentsComplete`. This shows that DynamoDB items in the same table can have different attributes.
 
 ![Observing Item Attributes](https://nextwork.ai/sammy769/uploads/8bd82466-f5ee-569e-9125-2c4c6ce7a07f_9078b333)
 
