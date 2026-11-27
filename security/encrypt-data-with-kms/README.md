@@ -46,9 +46,9 @@ Amazon DynamoDB is a fully managed NoSQL database service from AWS that stores a
 
 DynamoDB offers three encryption key options:
 
-1\. \*\*AWS owned key:\*\* Managed entirely by AWS. I don't need to manage the key or pay for its use.\
-2\. \*\*AWS managed key:\*\* Managed by AWS KMS on my behalf. AWS handles key management and rotation.\
-3\. \*\*Customer managed key:\*\* I create and manage the key in AWS KMS. I have more control over permissions, rotation and key policies.
+1. **AWS owned key:** Managed entirely by AWS. I don't need to manage the key or pay for its use.
+2. **AWS managed key:** Managed by AWS KMS on my behalf. AWS handles key management and rotation.
+3. **Customer managed key:** I create and manage the key in AWS KMS. I have more control over permissions, rotation and key policies.
 
 ### ✍️ What are we doing in this step?
 
@@ -70,22 +70,22 @@ In this step, I created a test IAM user and granted it full access to DynamoDB w
 
 ## Denying Access
 
-I created an IAM user with access to the AWS Management Console and attached the existing \`AmazonDynamoDBFullAccess\` policy directly to grant the user full access to DynamoDB.
+I created an IAM user with access to the AWS Management Console and attached the existing `AmazonDynamoDBFullAccess` policy directly to grant the user full access to DynamoDB.
 
 ### ✍️ What are we doing in this step?
 
 In this step, I logged into the AWS Management Console using my test IAM user and attempted to view the items in my encrypted DynamoDB table to test whether the user could access the data without permission to use my KMS key.
 
-I received an error stating that I did not have permission to perform \`kms:Decrypt\`. This happened because my test IAM user had permission to access DynamoDB but did not have the required permission to use the KMS key. When DynamoDB attempted to decrypt the table data on the user's behalf, AWS KMS denied the request.
+I received an error stating that I did not have permission to perform `kms:Decrypt`. This happened because my test IAM user had permission to access DynamoDB but did not have the required permission to use the KMS key. When DynamoDB attempted to decrypt the table data on the user's behalf, AWS KMS denied the request.
 
 ![Denying Access](https://nextwork.ai/sammy769/uploads/716e7f81-84d1-51d6-8945-d4860caebf77_w0x1y2z3)
 
 ## EXTRA: Granting Access
 
-I scrolled down to the \*\*Key policy\*\* section and selected \*\*Add\*\* next to \*\*Key users\*\*. I then added \`nextwork-kms-user\` as an authorised key user, granting the IAM user permission to use the KMS key.
+I scrolled down to the **Key policy** section and selected **Add** next to **Key users**. I then added `nextwork-kms-user` as an authorised key user, granting the IAM user permission to use the KMS key.
 
 I returned to the AWS Management Console using my test IAM user and refreshed the DynamoDB table page. I could now view the stored items because I had granted the user permission to use the KMS key to decrypt the data.
 
-I would use \*\*encryption\*\* to protect data from being read by unauthorised parties, especially if the data is stored or transmitted. I would use \*\*access control tools\*\*, such as IAM policies, to decide who can access AWS resources and what actions they can perform. They work best together: encryption protects the data, while access control manages who can access it.
+I would use **encryption** to protect data from being read by unauthorised parties, especially if the data is stored or transmitted. I would use **access control tools**, such as IAM policies, to decide who can access AWS resources and what actions they can perform. They work best together: encryption protects the data, while access control manages who can access it.
 
 ![EXTRA: Granting Access](https://nextwork.ai/sammy769/uploads/716e7f81-84d1-51d6-8945-d4860caebf77_feffb2fb8)
